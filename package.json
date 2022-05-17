@@ -1,0 +1,18 @@
+{
+  "name": "pnet-common",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/jaclaren/pnet-common.git",
+  "author": "Jani <on.codeworks@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "tsc:watch": "tsc --watch",
+    "sass": "sass -w src/styles/main.scss dist/pnet-common.min.css",
+    "start" : "concurrently --kill-others \"sass -w src/styles/main.scss dist/pnet-common.min.css\" \"tsc --watch\" \"serve\""
+  },
+  "devDependencies": {
+    "sass": "^1.51.0",
+    "concurrently": "^7.2.0"
+  }
+  
+}
