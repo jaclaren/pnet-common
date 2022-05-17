@@ -11,6 +11,8 @@ const generateDetails = (item) => {
     title.classList.add(`pnet-eclc-title`);
     reviewCount.classList.add(`pnet-eclc-reviewCount`);
     score.classList.add(`pnet-eclc-score`);
+    button.classList.add(`pnet-eclc-button`);
+    score.classList.add(`movein`);
     title.innerHTML = item.title;
     reviewCount.innerHTML = item.reviewCount;
     score.innerHTML = item.average_score;
@@ -25,8 +27,7 @@ const generateDetails = (item) => {
 };
 const generateElements = (items) => {
     const root = document.createElement(`div`);
-    root.innerHTML = "Hellos";
-    document.querySelectorAll('.pnet-expcardlist').forEach(tmp => {
+    document.querySelectorAll(".pnet-expcardlist").forEach((tmp) => {
         items.body.games.forEach((item, index) => {
             const root = document.createElement(`div`);
             const imgCol = document.createElement(`div`);
@@ -36,13 +37,24 @@ const generateElements = (items) => {
             const title = document.createElement(`div`);
             title.classList.add(`pnet-eclc-card-title`);
             root.append(imgCol);
-            if (index == 6)
-                root.append(generateDetails(item));
-            root.addEventListener('click', () => root.append(generateDetails(item)));
+            const cb = (roott) => {
+                let detailsElement = roott.querySelector(".pnet-eclc-details");
+                if (!!detailsElement) {
+                    detailsElement.remove();
+                }
+                else {
+                    detailsElement = generateDetails(item);
+                    roott.append(detailsElement);
+                }
+            };
+            if (index == 6) {
+                cb(root);
+            }
+            root.addEventListener("click", () => cb(root));
             tmp.append(root);
         });
     });
 };
 fetch("./fake.json")
     .then((res) => res.json())
-    .then(data => generateElements(data));
+    .then((data) => generateElements(data));

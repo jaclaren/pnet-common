@@ -26,10 +26,14 @@ body {
         // & > * {
         //     display: inline-block;
         // }
+
+        font-family: 'Poppins';
+        
     }
 }
 
-.pnet-eclc {    
+.pnet-eclc {        
+
     &-img {
         width: 93px;
         height: 140px;    
@@ -38,20 +42,24 @@ body {
     }
 
     &-title {        
-        padding-top: 20px;
 
         color: white;
+        font-weight: 100;
+        line-height: 1rem;
 
-        animation: text-movein 600ms forwards;
-
+        font-size: 1rem;
     }
 
     &-details {                
-        animation: ecl-fadein 500ms forwards;
+        animation: ecl-fadein 600ms forwards;
+
+        & > * {
+            animation: text-movein 1000ms forwards;
+            animation-delay: 100ms;
+            opacity: 0;
+        }   
 
         padding: 12px;
-
-        // background:rgb(17, 17, 17);                
 
         width: 0;        
 
@@ -60,12 +68,23 @@ body {
         }    
     }
 
+    &-button {
+        font-family: 'Poppins';
+        background-color: rgb(138, 138, 138);
+        border-radius: 12px;
+        border: none;
+        padding: 4px 14px;
+        color: #fff;
+    }
+
     &-bg {
-        filter: blur(15px) brightness(0.4);
+        filter: blur(20px) brightness(0.5);
         position: absolute;
         top: -20%; left: -20%; bottom: -20%; right: -20%;
         z-index: -1;
-        background-size: 1000px 2200px !important;        
+        background-size: 200px 1200px !important;        
+        animation: none;
+        opacity: 1;
     }
 
 }
@@ -75,21 +94,20 @@ body {
         width: 0;
     }    
     100% {
-        width: 250px;
+        width: 200px;
     }    
 }
 
 @keyframes text-movein {
     0% {
-        transform: translateX(-100px);
+        transform: translateX(300px);
         opacity: 0;
     }    
-    80% {
-        opacity: 0.8;
+    50% {
+        transform: translateX(0);
     }
 
-    100% {
-        transform: translateX(0);
+    100% {        
         opacity: 1;
     }    
 }

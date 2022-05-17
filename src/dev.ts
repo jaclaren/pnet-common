@@ -1,64 +1,78 @@
-const generateDetails = (item:any) => {
-    const element = document.createElement(`div`)
-    const title = document.createElement(`div`)
-    const reviewCount = document.createElement(`div`)
-    const score = document.createElement(`div`)
-    const bg = document.createElement(`div`)
-    const button = document.createElement(`button`)    
+const generateDetails = (item: any) => {
+  const element = document.createElement(`div`);
+  const title = document.createElement(`div`);
+  const reviewCount = document.createElement(`div`);
+  const score = document.createElement(`div`);
+  const bg = document.createElement(`div`);
+  const button = document.createElement(`button`);
 
-    element.classList.add(`pnet-eclc-details`)    
-    bg.classList.add(`pnet-eclc-bg`)
-    title.classList.add(`pnet-eclc-title`)
-    reviewCount.classList.add(`pnet-eclc-reviewCount`)
-    score.classList.add(`pnet-eclc-score`)
+  element.classList.add(`pnet-eclc-details`);
+  bg.classList.add(`pnet-eclc-bg`);
+  title.classList.add(`pnet-eclc-title`);
+  reviewCount.classList.add(`pnet-eclc-reviewCount`);
+  score.classList.add(`pnet-eclc-score`);
+  button.classList.add(`pnet-eclc-button`);
 
-    title.innerHTML = item.title
-    reviewCount.innerHTML = item.reviewCount
-    score.innerHTML = item.average_score
-    button.textContent = `Kooste`
+  score.classList.add(`movein`);
 
-    bg.style.background = `url(${item.coverimage})`
-    
-    element.append(bg)
-    element.append(title)
-    element.append(reviewCount)
-    element.append(score)
-    element.append(button)    
+  title.innerHTML = item.title;
+  reviewCount.innerHTML = item.reviewCount;
+  score.innerHTML = item.average_score;
+  button.textContent = `Kooste`;
 
-    return element
-}
+  bg.style.background = `url(${item.coverimage})`;
 
-const generateElements = (items: any) => {    
-    const root = document.createElement(`div`)
-    root.innerHTML = "Hellos"
+  element.append(bg);
+  element.append(title);
+  element.append(reviewCount);
+  element.append(score);
+  element.append(button);
 
-    document.querySelectorAll('.pnet-expcardlist').forEach(tmp => {
+  return element;
+};
+
+const generateElements = (items: any) => {
+  const root = document.createElement(`div`);
+
+  document.querySelectorAll(".pnet-expcardlist").forEach((tmp) => {
+    items.body.games.forEach((item: any, index: number) => {
+      const root = document.createElement(`div`);
+      const imgCol = document.createElement(`div`);
+
+      root.classList.add(`pnet-ecl-card`);
+      imgCol.classList.add(`pnet-eclc-img`);
+      imgCol.style.background = `url(${item.coverimage})`;
+
+      const title = document.createElement(`div`);
+      title.classList.add(`pnet-eclc-card-title`);
+
+      root.append(imgCol);
+
+      const cb = (roott:HTMLElement) => {
+        let detailsElement = roott.querySelector(".pnet-eclc-details");
+
+        if (!!detailsElement) {
+          detailsElement.remove();          
+        } else {
+            detailsElement = generateDetails(item);
+            roott.append(detailsElement);
         
-        items.body.games.forEach((item:any, index:number) => {        
-            const root = document.createElement(`div`);
-            const imgCol = document.createElement(`div`);
+      }
+        
+      }
+      
+      if (index == 6) {
+        cb(root)
+      }
 
-            root.classList.add(`pnet-ecl-card`)            
-            imgCol.classList.add(`pnet-eclc-img`)
-            imgCol.style.background = `url(${item.coverimage})`
 
-            const title = document.createElement(`div`);
-            title.classList.add(`pnet-eclc-card-title`)
-            
-            root.append(imgCol)                    
+      root.addEventListener("click", () => cb(root));
 
-            if(index == 6)
-                root.append(generateDetails(item))
-                
-            root.addEventListener('click', () => root.append(generateDetails(item)))
-            
-            tmp.append(root)                    
-        }) 
-
-    })
-  
+      tmp.append(root);
+    });
+  });
 };
 
 fetch("./fake.json")
   .then((res) => res.json())
-  .then(data => generateElements(data));
+  .then((data) => generateElements(data));

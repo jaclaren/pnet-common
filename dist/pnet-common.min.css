@@ -16,6 +16,7 @@ body {
   border-radius: 5px;
   display: flex;
   overflow: hidden;
+  font-family: "Poppins";
 }
 
 .pnet-eclc-img {
@@ -24,27 +25,43 @@ body {
   z-index: 1;
 }
 .pnet-eclc-title {
-  padding-top: 20px;
   color: white;
-  animation: text-movein 600ms forwards;
+  font-weight: 100;
+  line-height: 1rem;
+  font-size: 1rem;
 }
 .pnet-eclc-details {
-  animation: ecl-fadein 500ms forwards;
+  animation: ecl-fadein 600ms forwards;
   padding: 12px;
   width: 0;
 }
 .pnet-eclc-details > * {
+  animation: text-movein 1000ms forwards;
+  animation-delay: 100ms;
+  opacity: 0;
+}
+.pnet-eclc-details > * {
   z-index: 1;
 }
+.pnet-eclc-button {
+  font-family: "Poppins";
+  background-color: rgb(138, 138, 138);
+  border-radius: 12px;
+  border: none;
+  padding: 4px 14px;
+  color: #fff;
+}
 .pnet-eclc-bg {
-  filter: blur(15px) brightness(0.4);
+  filter: blur(20px) brightness(0.5);
   position: absolute;
   top: -20%;
   left: -20%;
   bottom: -20%;
   right: -20%;
   z-index: -1;
-  background-size: 1000px 2200px !important;
+  background-size: 200px 1200px !important;
+  animation: none;
+  opacity: 1;
 }
 
 @keyframes ecl-fadein {
@@ -52,19 +69,18 @@ body {
     width: 0;
   }
   100% {
-    width: 250px;
+    width: 200px;
   }
 }
 @keyframes text-movein {
   0% {
-    transform: translateX(-100px);
+    transform: translateX(300px);
     opacity: 0;
   }
-  80% {
-    opacity: 0.8;
+  50% {
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(0);
     opacity: 1;
   }
 }
