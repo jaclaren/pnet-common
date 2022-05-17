@@ -1,3 +1,32 @@
 body {
     background: rgb(67, 67, 73);
+
+    --var-pnet-ecl-bg-card: rgb(95, 95, 95);
+    --var-pnet-ecl-bg-card-edge: rgb(189, 189, 189);
+
 }  
+
+.pnet-expcardlist {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.pnet-ecl {
+    &-card {
+        outline: solid 1px var(--var-pnet-ecl-bg-card-edge);
+        background-color: var(--var-pnet-ecl-bg-card);
+        border-radius: 5px;        
+
+        & > * {
+            display: inline-block;
+        }
+    }
+}
+
+.pnet-eclc {
+    &-img {
+        width: 93px;
+        height: 140px;    
+    }
+}
