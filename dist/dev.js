@@ -1,10 +1,21 @@
 "use strict";
+const generateOrRemoveDetails = (rootElement, item) => {
+    let detailsElement = rootElement.querySelector(".pnet-eclc-details");
+    if (!!detailsElement) {
+        detailsElement.remove();
+    }
+    else {
+        detailsElement = generateDetails(item);
+        rootElement.append(detailsElement);
+    }
+};
 const generateDetails = (item) => {
     const element = document.createElement(`div`);
     const title = document.createElement(`div`);
     const reviewCount = document.createElement(`div`);
     const score = document.createElement(`div`);
     const bg = document.createElement(`div`);
+    const metas = document.createElement(`div`);
     const button = document.createElement(`button`);
     element.classList.add(`pnet-eclc-details`);
     bg.classList.add(`pnet-eclc-bg`);
@@ -12,6 +23,7 @@ const generateDetails = (item) => {
     reviewCount.classList.add(`pnet-eclc-reviewCount`);
     score.classList.add(`pnet-eclc-score`);
     button.classList.add(`pnet-eclc-button`);
+    metas.classList.add(`pnet-eclc-meta`);
     score.classList.add(`movein`);
     title.innerHTML = item.title;
     reviewCount.innerHTML = item.reviewCount;
@@ -20,8 +32,9 @@ const generateDetails = (item) => {
     bg.style.background = `url(${item.coverimage})`;
     element.append(bg);
     element.append(title);
-    element.append(reviewCount);
-    element.append(score);
+    element.append(metas);
+    metas.append(reviewCount);
+    metas.append(score);
     element.append(button);
     return element;
 };
@@ -37,20 +50,10 @@ const generateElements = (items) => {
             const title = document.createElement(`div`);
             title.classList.add(`pnet-eclc-card-title`);
             root.append(imgCol);
-            const cb = (roott) => {
-                let detailsElement = roott.querySelector(".pnet-eclc-details");
-                if (!!detailsElement) {
-                    detailsElement.remove();
-                }
-                else {
-                    detailsElement = generateDetails(item);
-                    roott.append(detailsElement);
-                }
-            };
             if (index == 6) {
-                cb(root);
+                generateOrRemoveDetails(root, item);
             }
-            root.addEventListener("click", () => cb(root));
+            imgCol.addEventListener("click", () => generateOrRemoveDetails(root, item));
             tmp.append(root);
         });
     });

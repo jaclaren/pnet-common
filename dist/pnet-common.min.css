@@ -2,6 +2,9 @@ body {
   background: rgb(67, 67, 73);
   --var-pnet-ecl-bg-card: rgb(95, 95, 95);
   --var-pnet-ecl-bg-card-edge: rgb(189, 189, 189);
+  --var-pnet-ecl-animspeed-card: 250ms;
+  --var-pnet-ecl-animspeed-text: 500ms;
+  --var-pnet-ecl-bg-card-height: 140px;
 }
 
 .pnet-expcardlist {
@@ -16,12 +19,14 @@ body {
   border-radius: 5px;
   display: flex;
   overflow: hidden;
+  max-height: var(--var-pnet-ecl-bg-card-height);
   font-family: "Poppins";
+  user-select: none;
 }
 
 .pnet-eclc-img {
   width: 93px;
-  height: 140px;
+  height: var(--var-pnet-ecl-bg-card-height);
   z-index: 1;
 }
 .pnet-eclc-title {
@@ -30,13 +35,19 @@ body {
   line-height: 1rem;
   font-size: 1rem;
 }
+.pnet-eclc-meta {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  color: #fff;
+}
 .pnet-eclc-details {
-  animation: ecl-fadein 600ms forwards;
+  animation: ecl-fadein var(--var-pnet-ecl-animspeed-card) forwards;
   padding: 12px;
   width: 0;
 }
 .pnet-eclc-details > * {
-  animation: text-movein 1000ms forwards;
+  animation: text-movein var(--var-pnet-ecl-animspeed-text) forwards;
   animation-delay: 100ms;
   opacity: 0;
 }
