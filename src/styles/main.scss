@@ -10,23 +10,86 @@ body {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+    // background-color:pink;
 }
 
 .pnet-ecl {
     &-card {
+        position: relative;
         outline: solid 1px var(--var-pnet-ecl-bg-card-edge);
-        background-color: var(--var-pnet-ecl-bg-card);
+        // background-color: var(--var-pnet-ecl-bg-card);
         border-radius: 5px;        
 
-        & > * {
-            display: inline-block;
-        }
+        display: flex;
+        overflow: hidden; 
+
+        // & > * {
+        //     display: inline-block;
+        // }
     }
 }
 
-.pnet-eclc {
+.pnet-eclc {    
     &-img {
         width: 93px;
         height: 140px;    
+
+        z-index: 1;
     }
+
+    &-title {        
+        padding-top: 20px;
+
+        color: white;
+
+        animation: text-movein 600ms forwards;
+
+    }
+
+    &-details {                
+        animation: ecl-fadein 500ms forwards;
+
+        padding: 12px;
+
+        // background:rgb(17, 17, 17);                
+
+        width: 0;        
+
+        & > * {
+            z-index: 1 ;
+        }    
+    }
+
+    &-bg {
+        filter: blur(15px) brightness(0.4);
+        position: absolute;
+        top: -20%; left: -20%; bottom: -20%; right: -20%;
+        z-index: -1;
+        background-size: 1000px 2200px !important;        
+    }
+
+}
+
+@keyframes ecl-fadein {
+    0% {
+        width: 0;
+    }    
+    100% {
+        width: 250px;
+    }    
+}
+
+@keyframes text-movein {
+    0% {
+        transform: translateX(-100px);
+        opacity: 0;
+    }    
+    80% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }    
 }

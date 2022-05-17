@@ -11,17 +11,62 @@ body {
 }
 
 .pnet-ecl-card {
+  position: relative;
   outline: solid 1px var(--var-pnet-ecl-bg-card-edge);
-  background-color: var(--var-pnet-ecl-bg-card);
   border-radius: 5px;
-}
-.pnet-ecl-card > * {
-  display: inline-block;
+  display: flex;
+  overflow: hidden;
 }
 
 .pnet-eclc-img {
   width: 93px;
   height: 140px;
+  z-index: 1;
+}
+.pnet-eclc-title {
+  padding-top: 20px;
+  color: white;
+  animation: text-movein 600ms forwards;
+}
+.pnet-eclc-details {
+  animation: ecl-fadein 500ms forwards;
+  padding: 12px;
+  width: 0;
+}
+.pnet-eclc-details > * {
+  z-index: 1;
+}
+.pnet-eclc-bg {
+  filter: blur(15px) brightness(0.4);
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  bottom: -20%;
+  right: -20%;
+  z-index: -1;
+  background-size: 1000px 2200px !important;
+}
+
+@keyframes ecl-fadein {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 250px;
+  }
+}
+@keyframes text-movein {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 /*# sourceMappingURL=pnet-common.min.css.map */
