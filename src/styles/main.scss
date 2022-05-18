@@ -3,12 +3,19 @@ body {
 
     --var-pnet-ecl-bg-card: rgb(95, 95, 95);
     --var-pnet-ecl-bg-card-edge: rgb(189, 189, 189);
-    --var-pnet-ecl-animspeed-card: 250ms;
-    --var-pnet-ecl-animspeed-text: 500ms;
     --var-pnet-ecl-bg-card-height: 140px;
+    --var-pnet-ecl-bg-card-width: 93px;    
     --var-pnet-ecl-bg-diffuser: linear-gradient(0deg, rgb(19, 21, 27) 40%, rgba(255, 255, 255, 0) 70%);
 
+    --var-pnet-ecl-card-shadow: 2px 2px 4px 2px #00000066;
+
+    --var-pnet-ecl-animspeed-card: 250ms;
+    --var-pnet-ecl-animspeed-text: 500ms;
+
     --var-pnet-ecl-primary-button-color: rgb(182, 25, 85);
+
+    --var-pnet-ecl-skeleton-c1: rgb(26, 26, 26);
+    --var-pnet-ecl-skeleton-c2: rgb(53, 53, 53);
 
 }  
 
@@ -32,14 +39,23 @@ body {
         font-family: 'Poppins';
 
         user-select: none;
-        
+        box-shadow: var(--var-pnet-ecl-card-shadow)        
     }
 }
 
 .pnet-eclc {        
 
+    &.skeleton {
+        width: var(--var-pnet-ecl-bg-card-width);
+        height: var(--var-pnet-ecl-bg-card-height);    
+
+        animation: skeleton 2500ms forwards infinite;
+
+        border-radius: 5px;
+    }
+
     &-img {
-        width: 93px;
+        width: var(--var-pnet-ecl-bg-card-width);
         height: var(--var-pnet-ecl-bg-card-height);    
 
         background-size: cover !important; 
@@ -63,15 +79,12 @@ body {
         flex-direction: row;
         align-items: center;
         gap: 6px;
-        // justify-content: space-around;
 
         color: #fff;
         font-size: 0.75rem;
         font-weight: 200;
         
         line-height: 1rem;
-        // background-color: black;
-        
     }
     
     &-score {
@@ -85,7 +98,6 @@ body {
         animation: ecl-fadein var(--var-pnet-ecl-animspeed-card) forwards;
         display: flex;
         justify-content: flex-end;
-        // flex: 1;
         align-items: baseline;
         flex-direction: column;
 
@@ -96,8 +108,6 @@ body {
             animation-delay: 100ms;
             opacity: 0;
         }   
-
-        // padding: 12px;
 
         width: 0;        
 
@@ -139,7 +149,6 @@ body {
         &::after {
             content: ".";
             background: var(--var-pnet-ecl-bg-diffuser);
-            // mix-blend-mode: multiply !important;
 
             top: -20%; left: -20%; bottom: -20%; right: -20%;
             position: absolute;
@@ -168,5 +177,17 @@ body {
 
     100% {        
         opacity: 1;
+    }    
+}
+
+@keyframes skeleton {
+    0% {
+        background-color:var(--var-pnet-ecl-skeleton-c1);        
+    }        
+    50% {        
+        background-color:var(--var-pnet-ecl-skeleton-c2);        
+    }    
+    100% {        
+        background-color:var(--var-pnet-ecl-skeleton-c1);        
     }    
 }

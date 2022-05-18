@@ -1,3 +1,9 @@
+const config = {
+  classes: {
+    card: `pnet-ecl-card`
+  }
+}
+
 const generateOrRemoveDetails = (rootElement:HTMLElement, item:any) => {
     let detailsElement = rootElement.querySelector(".pnet-eclc-details");
 
@@ -53,31 +59,49 @@ const generateDetails = (item: any) => {
 const generateElements = (items: any) => {
   const root = document.createElement(`div`);
 
-  document.querySelectorAll(".pnet-expcardlist").forEach((tmp) => {
-    items.body.games.forEach((item: any, index: number) => {
-      const root = document.createElement(`div`);
-      const imgCol = document.createElement(`div`);
-
-      root.classList.add(`pnet-ecl-card`);
-      imgCol.classList.add(`pnet-eclc-img`);
-      imgCol.style.background = `url(${item.coverimage})`;
-
-      const title = document.createElement(`div`);
-      title.classList.add(`pnet-eclc-card-title`);
-
-      root.append(imgCol);
-
-      if (index == 6 || index == 7) {
-        generateOrRemoveDetails(root, item)
-      }
-
-      imgCol.addEventListener("click", () => generateOrRemoveDetails(root, item));
-
-      tmp.append(root);
-    });
+  document.querySelectorAll(".pnet-expcardlist").forEach((tmp) => {   
+    generateSkeletonItems(items, tmp);    
+    setTimeout(() => fillItems(items, tmp), 1500)
   });
 };
 
 fetch("./fake.json")
   .then((res) => res.json())
-  .then((data) => generateElements(data));
+  .then((data) => generateElements(data.body.games));
+
+function generateSkeletonItems(items: any, tmp: Element) {
+  items.forEach((item: any, index: number) => {
+    const root = document.createElement(`div`);    
+    root.classList.add(`pnet-eclc`);
+    root.classList.add(`skeleton`);
+    tmp.append(root);
+  });
+}
+
+  function fillItems(items: any, tmp: Element) {        
+    tmp.querySelectorAll(`.pnet-eclc`).forEach((cardElement: any, index: number) => {
+    const item = items[index]
+    console.log({items})
+
+    const root = document.createElement(`div`);
+    const imgCol = document.createElement(`div`);
+
+    root.classList.add(`pnet-ecl-card`);
+    imgCol.classList.add(`pnet-eclc-img`);
+    imgCol.style.background = `url(${item.coverimage})`;
+
+    const title = document.createElement(`div`);
+    title.classList.add(`pnet-eclc-card-title`);
+
+    root.append(imgCol);
+
+    if (index == 6 || index == 7) {
+      // generateOrRemoveDetails(root, item);
+    }
+
+    imgCol.addEventListener("click", () => generateOrRemoveDetails(root, item));
+
+    cardElement.append(root);
+  });
+}
+

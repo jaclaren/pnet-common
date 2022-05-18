@@ -2,11 +2,15 @@ body {
   background: rgb(67, 67, 73);
   --var-pnet-ecl-bg-card: rgb(95, 95, 95);
   --var-pnet-ecl-bg-card-edge: rgb(189, 189, 189);
+  --var-pnet-ecl-bg-card-height: 140px;
+  --var-pnet-ecl-bg-card-width: 93px;
+  --var-pnet-ecl-bg-diffuser: linear-gradient(0deg, rgb(19, 21, 27) 40%, rgba(255, 255, 255, 0) 70%);
+  --var-pnet-ecl-card-shadow: 2px 2px 4px 2px #00000066;
   --var-pnet-ecl-animspeed-card: 250ms;
   --var-pnet-ecl-animspeed-text: 500ms;
-  --var-pnet-ecl-bg-card-height: 140px;
-  --var-pnet-ecl-bg-diffuser: linear-gradient(0deg, rgb(19, 21, 27) 40%, rgba(255, 255, 255, 0) 70%);
   --var-pnet-ecl-primary-button-color: rgb(182, 25, 85);
+  --var-pnet-ecl-skeleton-c1: rgb(26, 26, 26);
+  --var-pnet-ecl-skeleton-c2: rgb(53, 53, 53);
 }
 
 .pnet-expcardlist {
@@ -24,10 +28,17 @@ body {
   max-height: var(--var-pnet-ecl-bg-card-height);
   font-family: "Poppins";
   user-select: none;
+  box-shadow: var(--var-pnet-ecl-card-shadow);
 }
 
+.pnet-eclc.skeleton {
+  width: var(--var-pnet-ecl-bg-card-width);
+  height: var(--var-pnet-ecl-bg-card-height);
+  animation: skeleton 2500ms forwards infinite;
+  border-radius: 5px;
+}
 .pnet-eclc-img {
-  width: 93px;
+  width: var(--var-pnet-ecl-bg-card-width);
   height: var(--var-pnet-ecl-bg-card-height);
   background-size: cover !important;
   z-index: 1;
@@ -131,6 +142,17 @@ body {
   }
   100% {
     opacity: 1;
+  }
+}
+@keyframes skeleton {
+  0% {
+    background-color: var(--var-pnet-ecl-skeleton-c1);
+  }
+  50% {
+    background-color: var(--var-pnet-ecl-skeleton-c2);
+  }
+  100% {
+    background-color: var(--var-pnet-ecl-skeleton-c1);
   }
 }
 
