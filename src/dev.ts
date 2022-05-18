@@ -17,12 +17,12 @@ const generateDetails = (item: any) => {
   const score = document.createElement(`div`);
   const bg = document.createElement(`div`);
   const metas = document.createElement(`div`);
-  const button = document.createElement(`button`);
+  const button = document.createElement(`a`);
 
   element.classList.add(`pnet-eclc-details`);
   bg.classList.add(`pnet-eclc-bg`);
   title.classList.add(`pnet-eclc-title`);
-  reviewCount.classList.add(`pnet-eclc-reviewCount`);
+  reviewCount.classList.add(`pnet-eclc-reviewmetas`);
   score.classList.add(`pnet-eclc-score`);
   button.classList.add(`pnet-eclc-button`);
   metas.classList.add(`pnet-eclc-meta`);
@@ -30,20 +30,22 @@ const generateDetails = (item: any) => {
   score.classList.add(`movein`);
 
   title.innerHTML = item.title;
-  reviewCount.innerHTML = item.reviewCount;
-  score.innerHTML = item.average_score;
+  reviewCount.innerHTML = `${item.reviewCount} arvio${item.reviewCount > 1 ? `ta` : ``}`;
+  score.innerHTML = `${item.average_score}%`;
   button.textContent = `Kooste`;
 
   bg.style.background = `url(${item.coverimage})`;
 
-  element.append(bg);
-  element.append(title);
-  element.append(metas);
-  
-  metas.append(reviewCount);
-  metas.append(score);
+  button.href = item.href;
 
-  element.append(button);
+  element.append(bg);  
+  element.append(title); 
+  element.append(metas); 
+  
+  metas.append(score);
+  metas.append(reviewCount);  
+
+  element.append(button);  
 
   return element;
 };
@@ -65,7 +67,7 @@ const generateElements = (items: any) => {
 
       root.append(imgCol);
 
-      if (index == 6) {
+      if (index == 6 || index == 7) {
         generateOrRemoveDetails(root, item)
       }
 

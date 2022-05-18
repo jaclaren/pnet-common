@@ -6,6 +6,9 @@ body {
     --var-pnet-ecl-animspeed-card: 250ms;
     --var-pnet-ecl-animspeed-text: 500ms;
     --var-pnet-ecl-bg-card-height: 140px;
+    --var-pnet-ecl-bg-diffuser: linear-gradient(0deg, rgb(19, 21, 27) 40%, rgba(255, 255, 255, 0) 70%);
+
+    --var-pnet-ecl-primary-button-color: rgb(182, 25, 85);
 
 }  
 
@@ -39,6 +42,8 @@ body {
         width: 93px;
         height: var(--var-pnet-ecl-bg-card-height);    
 
+        background-size: cover !important; 
+
         z-index: 1;
     }
 
@@ -48,21 +53,43 @@ body {
         font-weight: 100;
         line-height: 1rem;
 
-        font-size: 1rem;
+        font-size: 0.9rem;        
     }
 
     &-meta {
+        margin-top: 6px;
         
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        align-items: center;
+        gap: 6px;
+        // justify-content: space-around;
 
         color: #fff;
+        font-size: 0.75rem;
+        font-weight: 200;
+        
+        line-height: 1rem;
+        // background-color: black;
         
     }
+    
+    &-score {
+        border: solid 1px rgba(255, 255, 255, 0.315);
+        padding: 2px 4px;
+        font-weight: 400;        
+    }
 
-    &-details {                
+    &-details {       
+        padding: 12px;         
         animation: ecl-fadein var(--var-pnet-ecl-animspeed-card) forwards;
+        display: flex;
+        justify-content: flex-end;
+        // flex: 1;
+        align-items: baseline;
+        flex-direction: column;
+
+        text-shadow: 1px 2px 3px rgb(0 0 0 / 85%);
 
         & > * {
             animation: text-movein var(--var-pnet-ecl-animspeed-text) forwards;
@@ -70,7 +97,7 @@ body {
             opacity: 0;
         }   
 
-        padding: 12px;
+        // padding: 12px;
 
         width: 0;        
 
@@ -79,23 +106,44 @@ body {
         }    
     }
 
+    &-reviewmetas {
+        margin-left: 1px;
+    }
+
     &-button {
+        display: inline-block;
+        text-shadow: none;
+        margin-top: 12px;
         font-family: 'Poppins';
         background-color: rgb(138, 138, 138);
-        border-radius: 12px;
+        border-radius: 0;
+        text-decoration: none;
         border: none;
-        padding: 4px 14px;
+        padding: 4px 14px;   
+        font-size: 0.8em;     
+        font-weight: 400;
         color: #fff;
+        border-radius: 4px;
+        background-color: var(--var-pnet-ecl-primary-button-color)
     }
 
     &-bg {
-        filter: blur(20px) brightness(0.5);
+        filter: blur(20px) brightness(0.9);
         position: absolute;
         top: -20%; left: -20%; bottom: -20%; right: -20%;
         z-index: -1;
         background-size: 200px 1200px !important;        
         animation: none;
-        opacity: 1;
+        opacity: 1;        
+
+        &::after {
+            content: ".";
+            background: var(--var-pnet-ecl-bg-diffuser);
+            // mix-blend-mode: multiply !important;
+
+            top: -20%; left: -20%; bottom: -20%; right: -20%;
+            position: absolute;
+        }
     }
 
 }
