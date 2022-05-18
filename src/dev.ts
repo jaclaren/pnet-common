@@ -61,7 +61,7 @@ const generateElements = (items: any) => {
 
   document.querySelectorAll(".pnet-expcardlist").forEach((tmp) => {   
     generateSkeletonItems(items, tmp);    
-    setTimeout(() => fillItems(items, tmp), 1500)
+    setTimeout(() => fillItems(items, tmp), 2500)
   });
 };
 
@@ -81,7 +81,9 @@ function generateSkeletonItems(items: any, tmp: Element) {
   function fillItems(items: any, tmp: Element) {        
     tmp.querySelectorAll(`.pnet-eclc`).forEach((cardElement: any, index: number) => {
     const item = items[index]
-    console.log({items})
+    cardElement.classList.remove(`skeleton`);
+    cardElement.classList.add(`loaded`);
+
 
     const root = document.createElement(`div`);
     const imgCol = document.createElement(`div`);

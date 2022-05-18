@@ -39,13 +39,21 @@ body {
         font-family: 'Poppins';
 
         user-select: none;
-        box-shadow: var(--var-pnet-ecl-card-shadow)        
+        box-shadow: var(--var-pnet-ecl-card-shadow)        ;
+
+        
     }
 }
 
-.pnet-eclc {        
+.pnet-eclc { 
+    opacity: 0;        
+    
+    &.loaded {                            
+        animation: card-fadein 1.5s forwards;
+    }
 
     &.skeleton {
+        opacity: 1;
         width: var(--var-pnet-ecl-bg-card-width);
         height: var(--var-pnet-ecl-bg-card-height);    
 
@@ -163,6 +171,15 @@ body {
     }    
     100% {
         width: 200px;
+    }    
+}
+
+@keyframes card-fadein {
+    0% {
+        opacity: 0;
+    }    
+    100% {
+        opacity: 1;
     }    
 }
 
