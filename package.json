@@ -5,6 +5,7 @@
   "repository": "https://github.com/jaclaren/pnet-common.git",
   "author": "Jani <on.codeworks@gmail.com>",
   "license": "MIT",
+  "type":"module",
   "scripts": {
     "tsc:watch": "tsc --watch",
     "sass": "sass -w src/styles/main.scss dist/pnet-common.min.css",

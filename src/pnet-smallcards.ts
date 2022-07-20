@@ -6,7 +6,7 @@ const config = {
 
 const generateOrRemoveDetails = (rootElement:HTMLElement, item:any) => {
     let detailsElement = rootElement.querySelector(".pnet-eclc-details");
-
+    
     if (!!detailsElement) {
       detailsElement.remove();          
     } else {

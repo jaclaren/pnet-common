@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2015",
-    "module": "ES2020",
+    "target": "esnext",
+    "module": "CommonJS",
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
