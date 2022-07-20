@@ -13,6 +13,7 @@ const generateOrRemoveDetails = (rootElement, item) => {
         rootElement.append(detailsElement);
     }
 };
+;
 const generateDetails = (item) => {
     const element = document.createElement(`div`);
     const title = document.createElement(`div`);
