@@ -1,7 +1,7 @@
 {
   "name": "pnet-common",
   "version": "1.0.0",
-  "main": "dist/pnet-smallcards.js",
+  "main": "dist/pnet-smallcards.js",  
   "repository": "https://github.com/jaclaren/pnet-common.git",
   "author": "Jani <on.codeworks@gmail.com>",
   "license": "MIT",

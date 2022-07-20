@@ -16,7 +16,15 @@ const generateOrRemoveDetails = (rootElement:HTMLElement, item:any) => {
     
   }
   
-const generateDetails = (item: any) => {
+export interface ISmallCardItem {
+  href: string;
+  coverimage: any;
+  average_score: any;
+  reviewCount: any;
+  title: string;    
+};
+
+const generateDetails = (item: ISmallCardItem) => {
   const element = document.createElement(`div`);
   const title = document.createElement(`div`);
   const reviewCount = document.createElement(`div`);
