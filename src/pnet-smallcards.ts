@@ -82,7 +82,7 @@ export function generateSkeletonItems(items: any, tmp: Element) {
   });
 }
 
-export function fillItems(items: any, tmp: Element) {        
+export function fillItems(items: ISmallCardItem[], tmp: Element) {        
     tmp.querySelectorAll(`.pnet-eclc`).forEach((cardElement: any, index: number) => {
     const item = items[index]
     cardElement.classList.remove(`skeleton`);
