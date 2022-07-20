@@ -67,6 +67,8 @@ exports.generateSkeletonItems = generateSkeletonItems;
 function fillItems(items, tmp) {
     tmp.querySelectorAll(`.pnet-eclc`).forEach((cardElement, index) => {
         const item = items[index];
+        if (!item)
+            return;
         cardElement.classList.remove(`skeleton`);
         cardElement.classList.add(`loaded`);
         const root = document.createElement(`div`);
